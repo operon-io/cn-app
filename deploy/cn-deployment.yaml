@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tku-cn-integration-deployment
+  namespace: dev
+  labels:
+    app: tku-cn-integration-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tku-cn-integration
+  template:
+    metadata:
+      labels:
+        app: tku-cn-integration
+    spec:
+      containers:
+      - name: tku-cn-integration
+        image: tkuregistry.azurecr.io/tku-cn-integration:latest
+        ports:
+        - containerPort: 80
